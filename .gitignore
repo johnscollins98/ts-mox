@@ -1,0 +1,9 @@
+#config
+.env
+.vscode
+
+# output
+dist
+
+# yarn/npm
+node_modules
