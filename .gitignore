@@ -4,6 +4,7 @@
 
 # output
 dist
+coverage
 
 # yarn/npm
 node_modules
