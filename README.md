@@ -16,6 +16,10 @@ Build typescript code.
 
 Run built typescript code.
 
+### `yarn test`
+
+Run tests using jest
+
 ## Environment Variables
 
 | Name      | Description          |
