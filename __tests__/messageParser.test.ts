@@ -49,7 +49,7 @@ describe('message parser', () => {
 
     expect(res.successful).toBe(true);
     expect(res.prefix).toBe('!!');
-  })
+  });
 
   it('should be successful if the valid prefix contains a space, and so does the message', () => {
     const res = parser.parse('$stest', ['$s']);
@@ -108,8 +108,8 @@ describe('message parser', () => {
 
   it('should return two args if there are two', () => {
     const res = parser.parse('^args arg1 arg2', ['^']);
-    
+
     expect(res.successful).toBe(true);
     expect(res.args).toEqual(['arg1', 'arg2']);
-  })
+  });
 });

@@ -1,6 +1,6 @@
 interface ParsedCommand {
   successful: boolean;
-  prefix?: string;    
+  prefix?: string;
   command?: string;
   args?: string[];
 }
