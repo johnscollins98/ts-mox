@@ -44,6 +44,13 @@ describe('message parser', () => {
     expect(res.prefix).toBe('$');
   });
 
+  it('should return the longest available matching prefix', () => {
+    const res = parser.parse('!!test', ['!', '!!']);
+
+    expect(res.successful).toBe(true);
+    expect(res.prefix).toBe('!!');
+  })
+
   it('should be successful if the valid prefix contains a space, and so does the message', () => {
     const res = parser.parse('$stest', ['$s']);
 

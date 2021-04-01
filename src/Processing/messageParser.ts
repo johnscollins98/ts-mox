@@ -5,12 +5,14 @@ class MessageParser {
 
   /**
    * Takes a message and attempts to parse it into a usable command structure
-   * 
+   *
    * @param message message to parse
    * @param prefixes list of allowed prefixes
    * @returns Parsed message if successful, { successful: false } if not.
    */
   public parse(message: string, prefixes: string[]): ParsedCommand {
+    prefixes = prefixes.sort((a, b) => b.length - a.length); // sort prefixes by length
+
     const prefix = this.getPrefix(message, prefixes);
     if (!prefix) return { successful: false };
 
@@ -24,7 +26,7 @@ class MessageParser {
 
   /**
    * Takes a message and gets a prefix if there is one
-   * 
+   *
    * @param message mesasage to check
    * @param prefixes list of allowed prefixes
    * @returns prefix if there is one, undefined if there isn't
