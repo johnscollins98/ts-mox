@@ -1,5 +1,7 @@
 # TS M.O.X
 
+[![Node.js Package](https://github.com/johnscollins98/ts-mox/actions/workflows/main.yml/badge.svg)](https://github.com/johnscollins98/ts-mox/actions/workflows/main.yml)
+
 Discord Bot written in TS using TDD.
 
 ## Yarn Scripts
