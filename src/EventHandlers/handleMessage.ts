@@ -11,7 +11,7 @@ import MessageParser from '../Processing/messageParser';
  *
  * @returns true if command was run
  */
-const messageHandler = async (
+const handleMessage = async (
   msg: Message,
   parser: MessageParser,
   router: CommandRouter
@@ -27,4 +27,4 @@ const messageHandler = async (
   return true;
 };
 
-export default messageHandler;
+export default handleMessage;

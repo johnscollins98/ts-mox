@@ -1,4 +1,4 @@
-import messageHandler from '../src/EventHandlers/messageHandler';
+import handleMessage from '../src/EventHandlers/handleMessage';
 import MessageParser from '../src/Processing/messageParser';
 import CommandRouter from '../src/Processing/commandRouter';
 import { Message } from 'discord.js';
@@ -29,7 +29,7 @@ describe('message handler', () => {
   it('should reply if parsed successfully', async () => {
     parser.parse.mockReturnValueOnce({ successful: true });
 
-    await messageHandler(message, parser, router);
+    await handleMessage(message, parser, router);
 
     expect(message.reply).toHaveBeenCalledTimes(1);
   });
@@ -37,7 +37,7 @@ describe('message handler', () => {
   it('should not reply if not parsed successfully', async () => {
     parser.parse.mockReturnValueOnce({ successful: false });
 
-    await messageHandler(message, parser, router);
+    await handleMessage(message, parser, router);
 
     expect(message.reply).not.toHaveBeenCalled();
   });
