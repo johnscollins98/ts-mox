@@ -6,7 +6,7 @@ class CommandRouter {
    * Constructor for command router.
    * @param commandRunners Map of string -> CommandRunner to route to.
    */
-  constructor(private readonly commandRunners: Map<string, CommandRunner>) {}
+  constructor() {}
 
   /**
    * Find an object that implements the CommandRunner interface.
@@ -16,13 +16,7 @@ class CommandRouter {
    * @returns found instance of CommandRunner or CommandNotFoundRunner
    */
   getCommandRunner(command: string): CommandRunner {
-    const res = this.commandRunners.get(command);
-
-    if (!res) {
-      return new CommandNotFoundRunner();
-    }
-
-    return res;
+    return new CommandNotFoundRunner();
   }
 }
 
