@@ -1,7 +1,7 @@
-import { Message } from 'discord.js';
+import { APIMessage, StringResolvable } from 'discord.js';
 
 interface CommandRunner {
-  run(): void;
+  run(args: string[]): Promise<StringResolvable | APIMessage>;
 }
 
 export default CommandRunner;
