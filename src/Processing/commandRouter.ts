@@ -15,7 +15,7 @@ class CommandRouter {
    * @param command string command to retrieve a runner for
    * @returns found instance of CommandRunner or CommandNotFoundRunner
    */
-  getCommandRunner(command: string): CommandRunner {
+  getCommandRunner(command?: string): CommandRunner {
     return new CommandNotFoundRunner();
   }
 }
