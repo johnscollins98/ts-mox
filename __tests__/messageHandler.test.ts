@@ -1,20 +1,20 @@
-import handleMessage from '../src/EventHandlers/handleMessage';
 import MessageParser from '../src/Processing/messageParser';
-import CommandRouter from '../src/Processing/commandRouter';
+import CommandRunnerFactory from '../src/Processing/commandRunnerFactory';
+import MessageHandler from '../src/EventHandlers/messageHandler';
 import { Message } from 'discord.js';
 
 jest.mock('discord.js');
 jest.mock('../src/Processing/messageParser.ts');
-jest.mock('../src/Processing/commandRouter.ts');
+jest.mock('../src/Processing/commandRunnerFactory.ts');
 
 const mockedMessage = <jest.Mock<Message>>Message;
 const mockedParser = <jest.Mock<MessageParser>>MessageParser;
-const mockedRouter = <jest.Mock<CommandRouter>>CommandRouter;
+const mockedFactory = <jest.Mock<CommandRunnerFactory>>CommandRunnerFactory;
 
 describe('message handler', () => {
   let message: jest.Mocked<Message>;
   let parser: jest.Mocked<MessageParser>;
-  let router: jest.Mocked<CommandRouter>;
+  let factory: jest.Mocked<CommandRunnerFactory>;
 
   beforeEach(() => {
     message = new mockedMessage() as any;
@@ -22,14 +22,15 @@ describe('message handler', () => {
 
     parser = new mockedParser() as any;
 
-    router = new mockedRouter() as any;
-    router.getCommandRunner.mockReturnValue({ run: jest.fn() });
+    factory = new mockedFactory() as any;
+    factory.getCommandRunner.mockReturnValue({ run: jest.fn() });
   });
 
   it('should reply if parsed successfully', async () => {
     parser.parse.mockReturnValueOnce({ successful: true });
+    const messageHandler = new MessageHandler(parser, factory);
 
-    await handleMessage(message, parser, router);
+    await messageHandler.handleMessage(message);
 
     expect(message.reply).toHaveBeenCalledTimes(1);
   });
@@ -37,7 +38,8 @@ describe('message handler', () => {
   it('should not reply if not parsed successfully', async () => {
     parser.parse.mockReturnValueOnce({ successful: false });
 
-    await handleMessage(message, parser, router);
+    const messageHandler = new MessageHandler(parser, factory);
+    messageHandler.handleMessage;
 
     expect(message.reply).not.toHaveBeenCalled();
   });

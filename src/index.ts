@@ -1,11 +1,14 @@
 import { Client } from 'discord.js';
 import { config } from 'dotenv';
-import handleMessage from './EventHandlers/handleMessage';
-import CommandRouter from './Processing/commandRouter';
+import MessageHandler from './EventHandlers/messageHandler';
+import CommandRunnerFactory from './Processing/commandRunnerFactory';
 import MessageParser from './Processing/messageParser';
 config();
 
 const client = new Client();
+const parser = new MessageParser(['!']);
+const commandRunnerFactory = new CommandRunnerFactory();
+const messageHandler = new MessageHandler(parser, commandRunnerFactory);
 
 client.on('ready', () => {
   if (client.user) {
@@ -14,9 +17,7 @@ client.on('ready', () => {
 });
 
 client.on('message', (msg) => {
-  const parser = new MessageParser();
-  const router = new CommandRouter();
-  handleMessage(msg, parser, router);
-})
+  messageHandler.handleMessage(msg);
+});
 
 client.login(process.env.BOT_TOKEN);

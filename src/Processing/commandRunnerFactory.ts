@@ -1,11 +1,7 @@
 import CommandNotFoundRunner from '../CommandRunners/commandNotFoundRunner';
 import CommandRunner from '../Interfaces/commandRunner';
 
-class CommandRouter {
-  /**
-   * Constructor for command router.
-   * @param commandRunners Map of string -> CommandRunner to route to.
-   */
+class CommandRunnerFactory {
   constructor() {}
 
   /**
@@ -20,4 +16,4 @@ class CommandRouter {
   }
 }
 
-export default CommandRouter;
+export default CommandRunnerFactory;

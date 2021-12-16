@@ -1,11 +1,10 @@
 import CommandNotFoundRunner from '../src/CommandRunners/commandNotFoundRunner';
-import CommandRunner from '../src/Interfaces/commandRunner';
-import CommandRouter from '../src/Processing/commandRouter';
+import CommandRunnerFactory from '../src/Processing/commandRunnerFactory';
 
 describe('command router', () => {
-  let router: CommandRouter;
+  let router: CommandRunnerFactory;
   beforeEach(() => {
-    router = new CommandRouter();
+    router = new CommandRunnerFactory();
   });
 
   it('should return CommandNotFoundRunner if command is not recognised', () => {

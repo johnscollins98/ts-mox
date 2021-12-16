@@ -6,12 +6,12 @@ class CommandNotFoundRunner implements CommandRunner {
 
   /**
    * Command that is run when none cna be found.
-   * 
+   *
    * @param args List of string args
    * @returns message response
    */
-  async run(args: string[]) : Promise<StringResolvable | APIMessage> {
-    return "Command Not Found";
+  async run(args?: string[]): Promise<StringResolvable | APIMessage> {
+    return 'Command Not Found';
   }
 }
 
